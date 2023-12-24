@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: your_username/mynginx:v0.1.0
+        image: panchanandevops/mynginx:v0.1.0
         ports:
         - containerPort: 80
