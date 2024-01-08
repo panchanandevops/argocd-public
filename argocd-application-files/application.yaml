@@ -2,24 +2,24 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: my-app
-  namespace: argocd
+  namespace: argocd # Namespace for ArgoCD resources
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io # Finalizer to clean up resources when deleting
 spec:
   project: default
   source:
     repoURL: https://github.com/panchanandevops/argocd-public.git
     targetRevision: HEAD
-    path: k8s-resources/my-app
+    path: k8s-resources/my-app # Path within the Git repository containing application manifests
   destination:
-    server: https://kubernetes.default.svc
+    server: https://kubernetes.default.svc # Kubernetes cluster API server address
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: false
+      prune: true # Enable automatic pruning of resources not defined in Git
+      selfHeal: true # Enable automatic self-healing of resources
+      allowEmpty: false # Do not allow sync of empty applications
     syncOptions:
-      - Validate=true
-      - CreateNamespace=false
-      - PrunePropagationPolicy=foreground
-      - PruneLast=true
+      - Validate=true # Validate Kubernetes manifests during sync
+      - CreateNamespace=false # Do not create namespaces during sync
+      - PrunePropagationPolicy=foreground # Prune propagation policy during sync
+      - PruneLast=true # Prune resources in the last prune round
