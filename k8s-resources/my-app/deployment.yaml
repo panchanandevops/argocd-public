@@ -16,10 +16,8 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: panchanandevops/mynginx:v0.1.0
-        ports:
-        - containerPort: 80
-        imagePullPolicy: Always
-
-
+        - name: nginx
+          image: panchanandevops/mynginx:v0.1.0
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
